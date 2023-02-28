@@ -1,0 +1,27 @@
+.brrol{
+    border-radius: 4px 4px 4px 4px 3%;
+}
+
+.glavarvampirov{
+    border: 1px solid rgb(101, 169, 179);
+    background-color: rgba(101, 169, 179,0.35);
+    color: rgb(67,136,173); 
+}
+
+.zytkoeprividenie{
+    border: 1px solid rgb(128, 112, 53);
+    background-color: rgba(128, 112, 53,0.35);
+    color: rgb(121,106,54);
+}
+
+.svetilnikdjeka{
+    border: 1px solid rgb(250, 141, 10);
+    background-color: rgba(250, 141, 10,0.35);
+    color: rgb(221,128,17);
+}
+
+.smeshnavayatikovka{
+    border: 1px solid rgb(240, 68, 141);
+    background-color: rgba(240, 68, 141,0.35);
+    color: rgb(204,67,122);
+}

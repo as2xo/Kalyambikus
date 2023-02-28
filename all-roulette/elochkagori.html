@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Kalyambikus — Елочка гори</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <a href="/index.html" class="nav-li">Главная</a>
+    <a href="/donate.html" class="nav-li">Донат</a>
+    <a href="/discord-rolle.html" class="nav-li">Роли в дискорд</a>
+    <a href="/contacts.html" class="nav-li">Контакты</a>
+    <a href="/all-roulette.html" class="nav-li-roulette">Рулетки</a>
+  </div>
+    <main class="main">
+      <div class="mainblock first-block">
+        <a href="/all-roulette.html"><img src="/img/left-chevron.png" title="Flaticon logo" width="30" height="30"></a>
+        <h2 class="nameblock">cодержимое рулетки<br><br>ЕЛОЧКА ГОРИ</h2><br><br>
+        <div>
+          <ul class="list-first">
+
+          <li class="line-spacing">	ЗЕЛЁНЫЙ	</li>
+<li class="line-spacing">	КРАСНЫЙ	</li>
+<li class="line-spacing">	СИНИЙ ЖЁЛТЫЙ	</li>
+<li class="line-spacing">	БЕЛЫЙ	</li>
+<li class="line-spacing">	ФИОЛЕТОВЫЙ	</li>
+<li class="line-spacing">	НОВОГОДНИЙ ПОДАРОК	</li>
+<li class="line-spacing">	ЗЕЛЁНЫЙ	</li>
+<li class="line-spacing">	КРАСНЫЙ	</li>
+<li class="line-spacing">	СИНИЙ	</li>
+<li class="line-spacing">	ЖЁЛТЫЙ	</li>
+<li class="line-spacing">	БЕЛЫЙ	</li>
+<li class="line-spacing">	ФИОЛЕТОВЫЙ	</li>
+<li class="line-spacing">	НОВОГОДНИЙ ПОДАРОК	</li>
+<li class="line-spacing">	ЗЕЛЁНЫЙ	</li>
+<li class="line-spacing">	КРАСНЫЙ	</li>
+<li class="line-spacing">	СИНИЙ	</li>
+<li class="line-spacing">	ЖЁЛТЫЙ	</li>
+<li class="line-spacing">	БЕЛЫЙ	</li>
+<li class="line-spacing">	ФИОЛЕТОВЫЙ	</li>
+<li class="line-spacing">	НОВОГОДНИЙ ПОДАРОК	</li>
+
+          </ul> 
+        </div>
+        <br><a href="/donate.html" class="nav-disc" style="height: 40px; padding: 2%;">Заказать рулетку (30р или 200 КК)</a>
+      </div>
+      <div class="mainblock second-block">
+            <div class="container">
+              <div id="wheelOfFortune">
+                <canvas id="wheel" width="500" height="500"></canvas>
+                 <div id="spin"></div>
+              </div>
+            </div>
+            <div>
+              <span  class="characters"> <img src="/img/down-arrow.png" alt="down-arrow" style="width: 50px;"> Жмякай кнопку для чуда <img src="/img/down-arrow.png" alt="down-arrow" style="width: 50px;"></span>
+          </div>
+            <div class="rextroulette" id="tsxr">Что выпало</div>
+    </div>
+    </main>
+  <div class="footer"><span>Ребята, это космос</span></div>
+</div>
+<script>
+  let sectors = [
+      {color:"	#00e700	", label:"	ЗЕЛЁНЫЙ	"},
+    {color:"	#ff0000	", label:"	КРАСНЫЙ	"},
+    {color:"	#0023e7	", label:"	СИНИЙ	"},
+    {color:"	#e7e300	", label:"	Жёлтый	"},
+    {color:"	#bebebe	", label:"	БЕЛЫЙ	"},
+    {color:"	#9200af	", label:"	ФИОЛЕТОВЫЙ	"},
+    {color:"	#42f2ff	", label:"	НОВОГОДНИЙ ПОДАРОК	"},
+    {color:"	#00e700	", label:"	ЗЕЛЁНЫЙ	"},
+    {color:"	#ff0000	", label:"	КРАСНЫЙ	"},
+    {color:"	#0023e7	", label:"	СИНИЙ	"},
+    {color:"	#e7e300	", label:"	ЖЁЛТЫЙ	"},
+    {color:"	#bebebe	", label:"	БЕЛЫЙ	"},
+    {color:"	#9200af	", label:"	ФИОЛЕТОВЫЙ	"},
+    {color:"	#42f2ff	", label:"	НОВОГОДНИЙ ПОДАРОК	"},
+    {color:"	#00e700	", label:"	ЗЕЛЁНЫЙ	"},
+    {color:"	#ff0000	", label:"	КРАСНЫЙ	"},
+    {color:"	#0023e7	", label:"	СИНИЙ	"},
+    {color:"	#e7e300	", label:"	ЖЁЛТЫЙ	"},
+    {color:"	#bebebe	", label:"	БЕЛЫЙ	"},
+    {color:"	#9200af	", label:"	ФИОЛЕТОВЫЙ	"},
+    {color:"	#42f2ff	", label:"	НОВОГОДНИЙ ПОДАРОК	"},
+
+
+  ];
+  
+  const rand = (m, M) => Math.random() * (M - m) + m;
+  let tot = sectors.length;
+  const EL_spin = document.querySelector("#tsxr");
+  const ctx = document.querySelector("#wheel").getContext('2d');
+  const buttonAddEl = document.querySelector("#buttonAdd");
+  const inputAddEl = document.querySelector("#add-name-input");
+  const inputAddColor = document.querySelector("#add-color-input");
+  const dia = ctx.canvas.width;
+  const rad = dia / 2;
+  const PI = Math.PI;
+  const TAU = 2 * PI;
+  let arc = TAU / sectors.length;
+  
+  const friction = 0.991; // 0.995=soft, 0.99=mid, 0.98=hard
+  let angVel = 0; // Angular velocity
+  let ang = 0; // Angle in radians
+  
+  const getIndex = () => Math.floor(tot - ang / TAU * tot) % tot;
+  
+  function drawSector(sector, i) {
+    const ang = arc * i;
+    ctx.save();
+    // COLOR
+    ctx.beginPath();
+    ctx.fillStyle = sector.color;
+    ctx.moveTo(rad, rad);
+    ctx.arc(rad, rad, rad, ang, ang + arc);
+    ctx.lineTo(rad, rad);
+    ctx.fill();
+    // TEXT
+    ctx.translate(rad, rad);
+    ctx.rotate(ang + arc / 2);
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold 30px sans-serif";
+    ctx.fillText(sector.label, rad - 10, 10);
+    //
+    ctx.restore();
+  };
+  
+  function rotate() {
+    const sector = sectors[getIndex()];
+    ctx.canvas.style.transform = `rotate(${ang - PI / 2}rad)`;
+    EL_spin.textContent = sector.label;
+    EL_spin.style.background = sector.color;
+  }
+  
+  function frame() {
+    if (!angVel) return;
+    angVel *= friction; // Decrement velocity by friction
+    if (angVel < 0.002) angVel = 0; // Bring to stop
+    ang += angVel; // Update angle
+    ang %= TAU; // Normalize angle
+    rotate();
+  }
+  
+  function engine() {
+    frame();
+    requestAnimationFrame(engine)
+  }
+  
+  // INIT
+  sectors.forEach(drawSector);
+  rotate(); // Initial rotation
+  engine(); // Start engine
+  EL_spin.addEventListener("click", () => {
+    if (!angVel) angVel = rand(0.25, 0.35);
+  });
+  buttonAddEl.addEventListener("click", () => {
+    const newEl = inputAddEl.value;
+    const newColor = inputAddColor.value;
+    sectors.push({
+      color: newColor, label: newEl
+    })
+    tot = sectors.length;
+    arc = TAU / sectors.length;
+    
+    sectors.forEach(drawSector);
+    setTimeout(() => {
+       inputAddEl.value = "";
+        inputAddColor.value = "#";
+        console.log(sectors);
+    }, 500)
+  })
+</script>
+</body>
+</html>
