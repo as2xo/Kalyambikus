@@ -105,7 +105,7 @@ hr {
 
 
 .list-first{
-  width: 1000px;
+  width: 950px;
     border: 2px solid #ffd4f950;
     border-radius: 20px;
     overflow: auto;
@@ -212,6 +212,15 @@ details {
   display: block;
 }
 
+details[open] {
+  animation: slide .5s;
+}
+
+@keyframes slide {
+  0%    { opacity: 0; transform:  translate(0, -10px); }
+  100%  { opacity: 1; transform:  translate(0, 0); }
+}
+
 
 summary {
     font-weight: bold;
@@ -316,5 +325,8 @@ summary {
 
 
 .sdv{
- color: #b2dd158a ;
+ color: #5df75d8a
+
+
+ ;
 }
