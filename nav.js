@@ -9,6 +9,5 @@ document.write('<div class="header"> <div class="sdvon"></div> <a href="/Kalyamb
             .then(() => {
                 document.querySelector('').innerHTML += 'copy<br>';
             })
-            alert('Роль скопирована. Однако, обратите внимание, уведомление не сработает простой вставкой в discord, так как имеет специальные символы.');
     }
 }
