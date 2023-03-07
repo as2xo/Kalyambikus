@@ -1,27 +1,44 @@
 .brrol{
-    border-radius: 3px 3px 3px;;
+    border-radius: 3px 3px 3px;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+    padding:  3px 7px 3px;
+    cursor: pointer;
+    
+}
+
+.admin{
+    border: 1px solid rgb(6,241,46);
+    background-color: rgba(6,241,46,0.35);
+    color: rgb(6,241,46); 
+}
+
+.fiksik{
+    border: 1px solid rgb(26,188,156);
+    background-color: rgba(26,188,156,0.35);
+    color: rgb(26,188,156); 
 }
 
 .glavarvampirov{
-    border: 1px solid rgb(101, 169, 179);
-    background-color: rgba(101, 169, 179,0.35);
+    border: 1px solid rgb(67,136,173);
+    background-color: rgba(67,136,173, 0.35);
     color: rgb(67,136,173); 
 }
 
 .zytkoeprividenie{
-    border: 1px solid rgb(128, 112, 53);
-    background-color: rgba(128, 112, 53,0.35);
+    border: 1px solid rgb(121,106,54);
+    background-color: rgba(121,106,54, 0.35);
     color: rgb(121,106,54);
 }
 
 .svetilnikdjeka{
-    border: 1px solid rgb(250, 141, 10);
-    background-color: rgba(250, 141, 10,0.35);
+    border: 1px solid rgb(221,128,17);
+    background-color: rgba(221,128,17, 0.35);
     color: rgb(221,128,17);
 }
 
 .smeshnavayatikovka{
-    border: 1px solid rgb(240, 68, 141);
-    background-color: rgba(240, 68, 141,0.35);
+    border: 1px solid rgb(204,67,122);
+    background-color: rgba(204,67,122,0.35);
     color: rgb(204,67,122);
 }
+
